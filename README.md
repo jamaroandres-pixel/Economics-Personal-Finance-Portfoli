@@ -1,1 +1,1502 @@
-# Economics-Personal-Finance-Portfoli
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Economics & Personal Finance Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #0F6E56;
+    --green-light: #E1F5EE;
+    --green-mid: #1D9E75;
+    --green-dark: #085041;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --teal: #5DCAA5;
+    --gray-light: #F1EFE8;
+    --gray-mid: #888780;
+    --text-dark: #2C2C2A;
+    --text-mid: #5F5E5A;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f8f7f3;
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--green-dark);
+    color: white;
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 40px solid rgba(93,202,165,0.15);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 30px solid rgba(93,202,165,0.1);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(93,202,165,0.2);
+    color: var(--teal);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span { color: var(--teal); }
+  .hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    max-width: 500px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  /* NAV PILLS */
+  .nav-pills {
+    background: var(--white);
+    border-bottom: 1px solid #e5e3dc;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav-pills::-webkit-scrollbar { display: none; }
+  .nav-inner {
+    display: inline-flex;
+    gap: 0;
+    padding: 12px 0;
+  }
+  .nav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    cursor: pointer;
+    background: none;
+  }
+  .nav-pill:hover {
+    background: var(--green-light);
+    color: var(--green);
+  }
+  .nav-pill.active {
+    background: var(--green);
+    color: white;
+  }
+  .nav-num {
+    font-size: 11px;
+    opacity: 0.6;
+  }
+
+  /* MAIN */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* SECTIONS */
+  .section {
+    padding: 60px 0;
+    border-bottom: 1px solid #e5e3dc;
+    display: none;
+  }
+  .section.active { display: block; }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--green-light);
+    line-height: 1;
+    min-width: 56px;
+  }
+  .section-title-group {}
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.2;
+  }
+  .section-desc {
+    font-size: 15px;
+    color: var(--text-mid);
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+
+  /* CARDS */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: var(--white);
+    border: 1px solid #e5e3dc;
+    border-radius: 12px;
+    padding: 20px;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+  .card-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--green-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--text-dark);
+  }
+  .card p {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+  .card-accent { border-left: 3px solid var(--green-mid); }
+
+  /* CAREER CARDS */
+  .career-card {
+    background: var(--white);
+    border: 1px solid #e5e3dc;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .career-card-header {
+    background: var(--green-dark);
+    color: white;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .career-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(93,202,165,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--teal);
+  }
+  .career-card-body { padding: 20px 24px; }
+  .career-detail {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+  .career-detail-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--green-mid);
+    min-width: 100px;
+    padding-top: 2px;
+  }
+  .career-detail-value {
+    font-size: 14px;
+    color: var(--text-dark);
+    line-height: 1.5;
+  }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0ede5;
+    font-size: 14px;
+    color: var(--text-dark);
+    line-height: 1.5;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--green-light);
+    color: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* LINKS */
+  .link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #d3d1c7;
+    font-size: 13px;
+    color: var(--green-dark);
+    text-decoration: none;
+    margin: 4px 4px 4px 0;
+    transition: all 0.2s;
+    background: var(--white);
+  }
+  .link-pill:hover {
+    background: var(--green-light);
+    border-color: var(--green-mid);
+  }
+
+  /* SCHOOL CARDS */
+  .school-card {
+    background: var(--white);
+    border: 1px solid #e5e3dc;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .school-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .school-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  .price-badge {
+    background: var(--amber-light);
+    color: var(--amber);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* SUBSECTIONS */
+  .subsection {
+    background: var(--gray-light);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .subsection-title {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--green-mid);
+    margin-bottom: 10px;
+  }
+
+  /* PRO CON */
+  .pro-con-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pro-list, .con-list {
+    border-radius: 8px;
+    padding: 14px;
+  }
+  .pro-list { background: #e8f5e9; }
+  .con-list { background: #fff3e0; }
+  .pro-con-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .pro-list .pro-con-label { color: #2e7d32; }
+  .con-list .pro-con-label { color: #e65100; }
+  .pro-con-item {
+    font-size: 13px;
+    color: var(--text-dark);
+    padding: 3px 0;
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .pro-con-item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+  }
+  .pro-list .pro-con-item::before { color: #2e7d32; }
+  .con-list .pro-con-item::before { color: #e65100; }
+
+  /* BUDGET METHOD */
+  .method-card {
+    background: var(--white);
+    border: 1px solid #e5e3dc;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .method-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .method-badge {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+  }
+  .snowball-badge { background: #e3f2fd; color: #1565c0; }
+  .avalanche-badge { background: #fce4ec; color: #c62828; }
+
+  /* INVEST BOOK */
+  .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
+  .book-card {
+    background: var(--white);
+    border: 1px solid #e5e3dc;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .book-cover {
+    width: 60px; height: 80px;
+    border-radius: 4px;
+    margin: 0 auto 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+  }
+  .book-title { font-size: 12px; font-weight: 500; color: var(--text-dark); line-height: 1.3; }
+  .book-author { font-size: 11px; color: var(--text-mid); margin-top: 4px; }
+
+  /* INFO BOX */
+  .info-box {
+    background: var(--green-light);
+    border-left: 3px solid var(--green-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--green-dark);
+    line-height: 1.6;
+  }
+
+  /* SOFT SKILLS */
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 16px;
+    border-radius: 20px;
+  }
+
+  /* INSURANCE TABLE */
+  .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .ins-card {
+    background: var(--white);
+    border: 1px solid #e5e3dc;
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .ins-type {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--green-mid);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* RESUME */
+  .resume-wrapper {
+    background: var(--white);
+    border: 1px solid #e5e3dc;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .resume-top {
+    background: var(--green-dark);
+    color: white;
+    padding: 32px 36px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .resume-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: rgba(93,202,165,0.25);
+    border: 2px solid rgba(93,202,165,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--teal);
+    flex-shrink: 0;
+  }
+  .resume-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .resume-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .resume-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+  }
+  .resume-body { padding: 28px 36px; }
+  .resume-section { margin-bottom: 28px; }
+  .resume-section-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    border-bottom: 1px solid #e5e3dc;
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+  .resume-objective {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    font-style: italic;
+  }
+  .resume-job { margin-bottom: 18px; }
+  .resume-job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .resume-job-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+  .resume-job-company {
+    font-size: 13px;
+    color: var(--green-mid);
+    font-weight: 500;
+  }
+  .resume-date {
+    font-size: 12px;
+    color: var(--text-mid);
+    background: var(--gray-light);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+  .resume-bullets { list-style: none; padding: 0; }
+  .resume-bullets li {
+    font-size: 13px;
+    color: var(--text-mid);
+    padding: 4px 0 4px 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .resume-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--green-mid);
+    font-size: 11px;
+    top: 5px;
+  }
+  .resume-skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .resume-skill-item {
+    background: var(--gray-light);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .resume-skill-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+  .resume-skill-desc {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.4;
+  }
+  .resume-edu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0ede5;
+    gap: 10px;
+  }
+  .resume-edu-item:last-child { border-bottom: none; }
+  .resume-edu-school { font-size: 14px; font-weight: 500; color: var(--text-dark); }
+  .resume-edu-detail { font-size: 12px; color: var(--text-mid); margin-top: 2px; }
+  .resume-award {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0ede5;
+    font-size: 13px;
+    color: var(--text-dark);
+  }
+  .resume-award:last-child { border-bottom: none; }
+  .award-star { color: var(--amber); font-size: 16px; }
+  .resume-ref {
+    background: var(--gray-light);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  .resume-ref-name { font-size: 14px; font-weight: 500; color: var(--text-dark); }
+  .resume-ref-detail { font-size: 12px; color: var(--text-mid); margin-top: 3px; }
+
+  @media (max-width: 600px) {
+    .resume-skills-grid { grid-template-columns: 1fr; }
+    .resume-top { flex-direction: column; gap: 16px; padding: 24px 20px; }
+    .resume-body { padding: 20px; }
+  }
+
+  /* ABOUT ME */
+  .about-hero {
+    background: var(--green-dark);
+    border-radius: 14px;
+    padding: 48px 40px;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .about-hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 30px solid rgba(93,202,165,0.12);
+  }
+  .about-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: -30px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    border: 25px solid rgba(93,202,165,0.08);
+  }
+  .about-initials {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: rgba(93,202,165,0.2);
+    border: 2px solid rgba(93,202,165,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--teal);
+    margin: 0 auto 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .about-hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 900;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 6px;
+  }
+  .about-hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    position: relative;
+    z-index: 1;
+  }
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .about-tag {
+    background: rgba(93,202,165,0.15);
+    color: var(--teal);
+    border: 1px solid rgba(93,202,165,0.3);
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+  .about-bio-card {
+    background: var(--white);
+    border: 1px solid #e5e3dc;
+    border-radius: 14px;
+    padding: 32px 36px;
+    margin-bottom: 20px;
+  }
+  .about-bio-text {
+    font-size: 15px;
+    color: var(--text-dark);
+    line-height: 1.85;
+  }
+  .about-bio-text strong { color: var(--green-dark); font-weight: 500; }
+  .about-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .about-fact {
+    background: var(--gray-light);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .about-fact-icon { font-size: 22px; flex-shrink: 0; }
+  .about-fact-label { font-size: 11px; color: var(--text-mid); text-transform: uppercase; letter-spacing: 1px; }
+  .about-fact-value { font-size: 14px; font-weight: 500; color: var(--text-dark); margin-top: 2px; }
+  .resume-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green-dark);
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 8px;
+    cursor: pointer;
+    border: none;
+  }
+  .resume-download-btn:hover { background: var(--green); transform: translateY(-1px); }
+  .resume-link-card {
+    background: var(--white);
+    border: 1px solid #e5e3dc;
+    border-radius: 14px;
+    padding: 28px 36px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .resume-link-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .resume-link-text p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 32px;
+    font-size: 13px;
+  }
+  footer span { color: var(--teal); }
+
+  /* TRANSITIONS */
+  .section { animation: fadeUp 0.4s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .pro-con-grid { grid-template-columns: 1fr; }
+    .section-num { font-size: 32px; }
+    .hero { padding: 50px 20px 40px; }
+    .container { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">Google Sites Portfolio Project</div>
+  <h1>Economics &amp;<br><span>Personal Finance</span></h1>
+  <p>A comprehensive personal finance portfolio covering career planning, budgeting, taxes, banking, insurance, and investing.</p>
+</div>
+
+<nav class="nav-pills">
+  <div class="nav-inner">
+    <button class="nav-pill active" onclick="showSection('about')"><span class="nav-num">👤</span> About Me</button>
+
+    <button class="nav-pill" onclick="showSection('career')"><span class="nav-num">02</span> Career</button>
+    <button class="nav-pill" onclick="showSection('college')"><span class="nav-num">03</span> Post-Secondary</button>
+    <button class="nav-pill" onclick="showSection('income')"><span class="nav-num">04</span> Income &amp; Expenses</button>
+    <button class="nav-pill" onclick="showSection('taxes')"><span class="nav-num">05</span> Taxes</button>
+    <button class="nav-pill" onclick="showSection('banking')"><span class="nav-num">06</span> Banking</button>
+    <button class="nav-pill" onclick="showSection('budget')"><span class="nav-num">07</span> Budgeting &amp; Debt</button>
+    <button class="nav-pill" onclick="showSection('bigpurchases')"><span class="nav-num">08</span> Big Purchases</button>
+    <button class="nav-pill" onclick="showSection('insurance')"><span class="nav-num">09</span> Insurance</button>
+    <button class="nav-pill" onclick="showSection('investing')"><span class="nav-num">10</span> Investing</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ABOUT ME -->
+<section class="section active" id="about">
+  <div class="container">
+
+    <div class="about-hero">
+      <div class="about-initials">JA</div>
+      <div class="about-hero-name">Jorge Amaro Moran</div>
+      <div class="about-hero-sub">Designer · Problem Solver · Venezuelan in NC</div>
+      <div class="about-tags">
+        <span class="about-tag">🇻🇪 Born in Venezuela</span>
+        <span class="about-tag">📍 Mint Hill, NC</span>
+        <span class="about-tag">🎓 Independence High School</span>
+        <span class="about-tag">💻 Cybersecurity &amp; Programming</span>
+        <span class="about-tag">🎨 Architectural Design</span>
+      </div>
+    </div>
+
+    <div class="about-bio-card">
+      <p class="about-bio-text">
+        I am a passionate creative, born and raised in Venezuela, currently living in NC, USA. I attend
+        <strong>Independence High School</strong> and am looking forward to the future, with the goal of enrolling
+        at <strong>UNCW</strong>. Personally, I possess a blend of Latin energy and a tireless capacity for solving
+        everyday problems — a mindset forged through resilience.
+      </p>
+      <p class="about-bio-text" style="margin-top: 16px;">
+        I previously worked as a <strong>design supervisor</strong> and <strong>architectural assistant</strong>, and I love
+        everything related to designing things. I am passionate about creating and developing projects that help
+        people improve their quality of life. My interests in <strong>cybersecurity and programming</strong> drive me
+        to explore how technology can be both creative and protective.
+      </p>
+
+      <div class="about-facts">
+        <div class="about-fact">
+          <div class="about-fact-icon">🏫</div>
+          <div>
+            <div class="about-fact-label">Current School</div>
+            <div class="about-fact-value">Independence High School</div>
+          </div>
+        </div>
+        <div class="about-fact">
+          <div class="about-fact-icon">🎯</div>
+          <div>
+            <div class="about-fact-label">College Goal</div>
+            <div class="about-fact-value">UNCW</div>
+          </div>
+        </div>
+        <div class="about-fact">
+          <div class="about-fact-icon">📊</div>
+          <div>
+            <div class="about-fact-label">GPA</div>
+            <div class="about-fact-value">3.5</div>
+          </div>
+        </div>
+        <div class="about-fact">
+          <div class="about-fact-icon">🌎</div>
+          <div>
+            <div class="about-fact-label">Origin</div>
+            <div class="about-fact-value">Barquisimeto, Venezuela</div>
+          </div>
+        </div>
+        <div class="about-fact">
+          <div class="about-fact-icon">✉️</div>
+          <div>
+            <div class="about-fact-label">Email</div>
+            <div class="about-fact-value">jamaroandres@gmail.com</div>
+          </div>
+        </div>
+        <div class="about-fact">
+          <div class="about-fact-icon">🏆</div>
+          <div>
+            <div class="about-fact-label">Awards</div>
+            <div class="about-fact-value">Math &amp; English Awards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resume & Brag Sheet Link Cards -->
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+      <div class="resume-link-card" style="flex-direction: column; align-items: flex-start; gap: 16px;">
+        <div class="resume-link-text">
+          <h3>📄 My Resume</h3>
+          <p>View my full work experience, education, skills, and references.</p>
+        </div>
+        <a class="resume-download-btn" href="https://docs.google.com/document/d/1e_vqPdl1I_qav77tmsQgiBxiJoAcTjUqXIk9ouZYsvI/edit?tab=t.0" target="_blank">
+          View Resume →
+        </a>
+      </div>
+      <div class="resume-link-card" style="flex-direction: column; align-items: flex-start; gap: 16px;">
+        <div class="resume-link-text">
+          <h3>⭐ Brag Sheet</h3>
+          <p>A summary of my achievements, activities, and accomplishments.</p>
+        </div>
+        <a class="resume-download-btn" href="https://docs.google.com/document/d/1cye62BCoEu5wfu4j98H8QicRVLhKexdRWtbgXJ41CSQ/edit?tab=t.0" target="_blank">
+          View Brag Sheet →
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CAREER -->
+<section class="section" id="career">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title-group">
+        <div class="section-label">Section Two</div>
+        <div class="section-title">Career Planning</div>
+        <div class="section-desc">Exploring career paths in technology and cybersecurity — fields that combine my passion for programming with high earning potential.</div>
+      </div>
+    </div>
+
+    <!-- Career Option 1 -->
+    <div class="career-card">
+      <div class="career-card-header">
+        <div class="career-avatar">CS</div>
+        <div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:4px;">Career Option 1</div>
+          <div style="font-size:20px; font-family:'Playfair Display',serif; font-weight:700;">Cybersecurity Analyst</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.6); margin-top:2px;">Information Technology</div>
+        </div>
+      </div>
+      <div class="career-card-body">
+        <div class="career-detail">
+          <div class="career-detail-label">Overview</div>
+          <div class="career-detail-value">Cybersecurity analysts protect an organization's computer systems and networks from cyber attacks, monitoring for threats and implementing security measures.</div>
+        </div>
+        <div class="career-detail">
+          <div class="career-detail-label">Why I'm interested</div>
+          <div class="career-detail-value">I love solving complex problems and the idea of defending systems against hackers is exciting. It's a field where you're constantly learning and staying ahead of threats.</div>
+        </div>
+        <div class="career-detail">
+          <div class="career-detail-label">Education</div>
+          <div class="career-detail-value">Bachelor's degree in Cybersecurity or Computer Science (4 years). Certifications like CompTIA Security+, CEH, or CISSP can accelerate career advancement. Trade-off: tuition cost vs. high starting salary (~$75,000+).</div>
+        </div>
+        <div style="margin-top:8px;">
+          <a href="https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm" class="link-pill" target="_blank">🔗 BLS – Info Security Analysts</a>
+          <a href="https://www.wgu.edu/online-it-degrees/cybersecurity-information-assurance-bachelors-program.html" class="link-pill" target="_blank">🎓 WGU Cybersecurity Program</a>
+          <a href="https://www.crowdstrike.com" class="link-pill" target="_blank">🏢 CrowdStrike (Employer)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Career Option 2 -->
+    <div class="career-card">
+      <div class="career-card-header" style="background: #085041;">
+        <div class="career-avatar">SE</div>
+        <div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:4px;">Career Option 2</div>
+          <div style="font-size:20px; font-family:'Playfair Display',serif; font-weight:700;">Software Engineer</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.6); margin-top:2px;">Software Development</div>
+        </div>
+      </div>
+      <div class="career-card-body">
+        <div class="career-detail">
+          <div class="career-detail-label">Overview</div>
+          <div class="career-detail-value">Software engineers design, develop, and maintain software applications. They work across front-end, back-end, and full-stack development using various programming languages.</div>
+        </div>
+        <div class="career-detail">
+          <div class="career-detail-label">Why I'm interested</div>
+          <div class="career-detail-value">Programming is my passion. I enjoy the creative process of building software from scratch and seeing it come to life. The remote work opportunities and high salaries are also strong advantages.</div>
+        </div>
+        <div class="career-detail">
+          <div class="career-detail-label">Education</div>
+          <div class="career-detail-value">4-year CS degree or coding bootcamp (3–6 months, lower cost). Starting salaries average $85,000–$120,000. Opportunity cost: bootcamp is faster but a degree offers broader foundational knowledge.</div>
+        </div>
+        <div style="margin-top:8px;">
+          <a href="https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm" class="link-pill" target="_blank">🔗 BLS – Software Developers</a>
+          <a href="https://cs.unc.edu" class="link-pill" target="_blank">🎓 UNC Computer Science</a>
+          <a href="https://careers.google.com" class="link-pill" target="_blank">🏢 Google Careers</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resume Writing -->
+    <div class="subsection">
+      <div class="subsection-title">📄 Resume Writing Resources</div>
+      <a href="https://www.thebalancemoney.com/how-to-write-a-resume-2063336" class="link-pill" target="_blank">How to Write a Resume (The Balance)</a>
+      <a href="https://www.youtube.com/watch?v=y8YH0Qbu5h4" class="link-pill" target="_blank">▶ Resume Writing Video Guide</a>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="subsection">
+      <div class="subsection-title">💡 Soft Skills I Value</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Critical Thinking</span>
+        <span class="skill-tag">Communication</span>
+        <span class="skill-tag">Teamwork</span>
+        <span class="skill-tag">Adaptability</span>
+        <span class="skill-tag">Problem-Solving</span>
+        <span class="skill-tag">Time Management</span>
+      </div>
+      <div style="margin-top:12px;">
+        <a href="https://www.thebalancecareers.com/list-of-soft-skills-2063770" class="link-pill" target="_blank">🔗 Soft Skills Resource</a>
+      </div>
+    </div>
+
+    <!-- Job Search -->
+    <div class="subsection">
+      <div class="subsection-title">🔍 Job Search Sites</div>
+      <a href="https://www.linkedin.com/jobs" class="link-pill" target="_blank">LinkedIn Jobs</a>
+      <a href="https://www.indeed.com" class="link-pill" target="_blank">Indeed</a>
+    </div>
+
+    <!-- Job Application & Interview -->
+    <div class="subsection">
+      <div class="subsection-title">📋 Job Application &amp; Interview Tips</div>
+      <a href="https://www.dol.gov/general/jobs/tips" class="link-pill" target="_blank">🔗 Job Application Tips</a>
+      <a href="https://www.monster.com/career-advice/article/teen-job-interview-tips" class="link-pill" target="_blank">🔗 Teen Interview Tips</a>
+      <a href="https://www.indeed.com/career-advice/interviewing/job-interview-tips-how-to-make-a-great-impression" class="link-pill" target="_blank">🔗 How to Ace Your Interview</a>
+    </div>
+  </div>
+</section>
+
+<!-- POST-SECONDARY -->
+<section class="section" id="college">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title-group">
+        <div class="section-label">Section Three</div>
+        <div class="section-title">Paying for Post-Secondary Education</div>
+        <div class="section-desc">Researching colleges and universities with strong Computer Science and Cybersecurity programs.</div>
+      </div>
+    </div>
+
+    <div class="school-card">
+      <div class="school-header">
+        <div class="school-name">🏛️ NC State University</div>
+        <div class="price-badge">~$27,000 / year (in-state)</div>
+      </div>
+      <ul class="checklist">
+        <li><div class="check-icon">✓</div><span>Interested program: <strong>B.S. in Computer Science</strong> with Cybersecurity concentration</span></li>
+        <li><div class="check-icon">✓</div><span>Renowned engineering and tech department with research opportunities</span></li>
+      </ul>
+      <div style="margin-top:12px;">
+        <a href="https://www.ncsu.edu" class="link-pill" target="_blank">🌐 School Website</a>
+        <a href="https://financialaid.ncsu.edu" class="link-pill" target="_blank">💰 Financial Aid</a>
+      </div>
+    </div>
+
+    <div class="school-card">
+      <div class="school-header">
+        <div class="school-name">🏛️ UNC Chapel Hill</div>
+        <div class="price-badge">~$25,000 / year (in-state)</div>
+      </div>
+      <ul class="checklist">
+        <li><div class="check-icon">✓</div><span>Interested program: <strong>B.S. in Computer Science</strong></span></li>
+        <li><div class="check-icon">✓</div><span>Top-ranked public university with extensive industry connections</span></li>
+      </ul>
+      <div style="margin-top:12px;">
+        <a href="https://www.unc.edu" class="link-pill" target="_blank">🌐 School Website</a>
+        <a href="https://studentaid.unc.edu" class="link-pill" target="_blank">💰 Financial Aid</a>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📎 Application Quick Reference</div>
+      <a href="https://studentaid.gov/h/apply-for-aid/fafsa" class="link-pill" target="_blank">FAFSA Website</a>
+      <a href="https://www.cfnc.org" class="link-pill" target="_blank">CFNC Website</a>
+      <a href="https://www.youtube.com/watch?v=IfgTxfBxiEo" class="link-pill" target="_blank">▶ College Application Process Video</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">💵 Financial Aid Quick References</div>
+      <a href="https://studentaid.gov/understand-aid/types/scholarships" class="link-pill" target="_blank">Scholarships Guide</a>
+      <a href="https://www.fastweb.com" class="link-pill" target="_blank">Fastweb – Scholarship Search</a>
+    </div>
+  </div>
+</section>
+
+<!-- INCOME & EXPENSES -->
+<section class="section" id="income">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title-group">
+        <div class="section-label">Section Four</div>
+        <div class="section-title">Income &amp; Expenses</div>
+        <div class="section-desc">Understanding how to manage income, navigate paycheck documents, and set up direct deposit.</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">💵 How to Read a Paycheck Stub</div>
+      <a href="https://www.thebalancemoney.com/what-is-a-pay-stub-2385973" class="link-pill" target="_blank">🔗 How to Read a Pay Stub</a>
+      <a href="https://www.youtube.com/watch?v=oOvxGWTLJ44" class="link-pill" target="_blank">▶ Paycheck Stub Explained (Video)</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🏦 ACH Transfer (Direct Deposit)</div>
+      <div class="info-box">A <strong>direct deposit</strong> is an electronic transfer of payment directly from the payer's bank account into the payee's bank account, eliminating the need for a paper check.</div>
+      <a href="https://www.investopedia.com/terms/d/directdeposit.asp" class="link-pill" target="_blank">🔗 What is Direct Deposit?</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📄 Tax Forms</div>
+      <a href="https://www.irs.gov/pub/irs-pdf/fw4.pdf" class="link-pill" target="_blank">📋 W-4 Form</a>
+      <a href="https://www.uscis.gov/i-9" class="link-pill" target="_blank">📋 I-9 Form</a>
+      <a href="https://www.investopedia.com/articles/personal-finance/082714/w2-vs-w4.asp" class="link-pill" target="_blank">🔗 Understanding Tax Documents</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📊 W-2 Information</div>
+      <a href="https://www.irs.gov/forms-pubs/about-form-w-2" class="link-pill" target="_blank">🔗 What is a W-2 Form?</a>
+      <div class="info-box">A W-2 form is important because it reports an employee's annual wages and the amount of taxes withheld — you need it to file your federal and state tax returns each year.</div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📁 New Hire (Onboarding) Documents</div>
+      <a href="https://www.indeed.com/hire/c/info/new-hire-paperwork" class="link-pill" target="_blank">🔗 New Hire Onboarding Checklist</a>
+      <a href="https://www.thebalancemoney.com/employment-documents-you-need-to-start-a-new-job-2061967" class="link-pill" target="_blank">🔗 Employment Documents Guide</a>
+      <a href="https://www.shrm.org/resourcesandtools/hr-topics/talent-acquisition/pages/new-hire-paperwork.aspx" class="link-pill" target="_blank">🔗 Required New Employee Paperwork</a>
+      <a href="https://www.adp.com/spark/articles/2019/09/what-documents-do-you-need-to-start-working.aspx" class="link-pill" target="_blank">🔗 What Documents Do You Need?</a>
+    </div>
+  </div>
+</section>
+
+<!-- TAXES -->
+<section class="section" id="taxes">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div class="section-title-group">
+        <div class="section-label">Section Five</div>
+        <div class="section-title">Taxes</div>
+        <div class="section-desc">Essential tax knowledge, resources, and tools for filing and understanding the US tax system.</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📋 Key Tax Forms &amp; Links</div>
+      <a href="https://www.irs.gov/forms-instructions" class="link-pill" target="_blank">🔗 Key IRS Tax Forms &amp; Links</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🛠️ Tax Preparation Help</div>
+      <a href="https://www.irs.gov" class="link-pill" target="_blank">IRS.gov</a>
+      <a href="https://turbotax.intuit.com" class="link-pill" target="_blank">TurboTax</a>
+      <a href="https://www.hrblock.com" class="link-pill" target="_blank">H&amp;R Block</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📚 Tax Basics</div>
+      <a href="https://www.irs.gov/individuals/teens-and-income-taxes" class="link-pill" target="_blank">🔗 Teens and Income Taxes</a>
+      <a href="https://www.thebalancemoney.com/income-taxes-4427677" class="link-pill" target="_blank">🔗 Taxes: Understanding the Basics</a>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card-accent">
+        <div class="card-icon">⚖️</div>
+        <h3>Tax Credits vs. Deductions</h3>
+        <p>Credits directly reduce the tax you owe dollar-for-dollar; deductions reduce your taxable income. Credits are generally more valuable.</p>
+        <a href="https://www.investopedia.com/articles/tax/08/credit-vs-deduction.asp" class="link-pill" style="margin-top:8px; display:inline-flex;" target="_blank">Learn more</a>
+      </div>
+      <div class="card card-accent">
+        <div class="card-icon">📊</div>
+        <h3>How Tax Brackets Work</h3>
+        <p>The US uses a progressive tax system — you only pay the higher rate on income within that bracket, not on all your income.</p>
+        <a href="https://www.nerdwallet.com/article/taxes/federal-income-tax-brackets" class="link-pill" style="margin-top:8px; display:inline-flex;" target="_blank">Learn more</a>
+      </div>
+      <div class="card card-accent">
+        <div class="card-icon">💡</div>
+        <h3>Why NOT to Want a Big Refund</h3>
+        <p>A large refund means you gave the government an interest-free loan. It's better to adjust your withholding and keep more each paycheck.</p>
+        <a href="https://www.thebalancemoney.com/reasons-why-you-dont-want-a-big-tax-refund-1388780" class="link-pill" style="margin-top:8px; display:inline-flex;" target="_blank">Learn more</a>
+      </div>
+      <div class="card card-accent">
+        <div class="card-icon">🧾</div>
+        <h3>Self-Employment Taxes</h3>
+        <p>Freelancers and self-employed individuals must pay both employer and employee portions of Social Security and Medicare taxes.</p>
+        <a href="https://www.irs.gov/businesses/small-businesses-self-employed/self-employed-individuals-tax-center" class="link-pill" style="margin-top:8px; display:inline-flex;" target="_blank">Learn more</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANKING -->
+<section class="section" id="banking">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <div class="section-title-group">
+        <div class="section-label">Section Six</div>
+        <div class="section-title">Banking</div>
+        <div class="section-desc">Understanding banking options, account types, and financial services available to teens and young adults.</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📖 Complete Guide to Checking Accounts</div>
+      <a href="https://www.thebalancemoney.com/complete-guide-to-checking-accounts-315432" class="link-pill" target="_blank">🔗 The Complete Guide to Checking Accounts</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🏦 Banking Options — Chase Bank</div>
+      <ul class="checklist">
+        <li><div class="check-icon">✓</div><span>One of the largest banks in the US with thousands of branches nationwide</span></li>
+      </ul>
+      <div style="margin-top:10px;">
+        <a href="https://www.chase.com/personal/checking" class="link-pill" target="_blank">Checking Accounts</a>
+        <a href="https://www.chase.com/personal/savings" class="link-pill" target="_blank">Savings Accounts</a>
+        <a href="https://www.chase.com/personal/investments" class="link-pill" target="_blank">Investment Services</a>
+        <a href="https://www.chase.com/personal/insurance" class="link-pill" target="_blank">Insurance Services</a>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">👾 Banking for Teens</div>
+      <a href="https://www.youtube.com/watch?v=PFBhIkPdkNk" class="link-pill" target="_blank">▶ Banking 101 for Teens (Video)</a>
+      <a href="https://www.investopedia.com/best-bank-accounts-for-teens-4772230" class="link-pill" target="_blank">🔗 Best Bank Accounts for Teens</a>
+    </div>
+  </div>
+</section>
+
+<!-- BUDGETING -->
+<section class="section" id="budget">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">07</div>
+      <div class="section-title-group">
+        <div class="section-label">Section Seven</div>
+        <div class="section-title">Budgeting &amp; Debt</div>
+        <div class="section-desc">Strategies for creating a budget, building an emergency fund, and managing debt effectively.</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📊 How to Create a Budget</div>
+      <a href="https://www.consumerfinance.gov/consumer-tools/budget/" class="link-pill" target="_blank">🔗 Salary-Based Budgeting Worksheet</a>
+      <a href="https://www.youtube.com/watch?v=nSqQkLFwv2M" class="link-pill" target="_blank">▶ Why You Need a Budget (Video)</a>
+      <a href="https://www.nerdwallet.com/article/finance/how-to-budget" class="link-pill" target="_blank">🔗 How to Create a Budget</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🛡️ Emergency Fund</div>
+      <div class="info-box">An <strong>emergency fund</strong> is money set aside specifically for unexpected financial hardships (car repairs, medical bills, job loss). Experts recommend saving 3–6 months of living expenses.</div>
+      <a href="https://www.investopedia.com/terms/e/emergency_fund.asp" class="link-pill" target="_blank">🔗 What is an Emergency Fund?</a>
+      <a href="https://www.nerdwallet.com/article/banking/emergency-fund-calculator" class="link-pill" target="_blank">🔗 How to Build an Emergency Fund</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🏔️ Debt Repayment Strategies</div>
+
+      <div class="method-card">
+        <div class="method-title">❄️ Snowball Method <span class="method-badge snowball-badge">Motivation-based</span></div>
+        <p style="font-size:14px; color:var(--text-mid); line-height:1.6; margin-bottom:12px;">Pay off the <strong>smallest debt first</strong> regardless of interest rate, then roll that payment to the next smallest. Builds psychological momentum through quick wins.</p>
+        <div class="pro-con-grid">
+          <div class="pro-list"><div class="pro-con-label">Pros</div><div class="pro-con-item">Quick wins boost motivation</div><div class="pro-con-item">Simple to follow</div></div>
+          <div class="con-list"><div class="pro-con-label">Cons</div><div class="pro-con-item">May pay more interest overall</div><div class="pro-con-item">Ignores interest rates</div></div>
+        </div>
+        <a href="https://www.ramseysolutions.com/debt/how-the-debt-snowball-method-works" class="link-pill" style="margin-top:12px; display:inline-flex;" target="_blank">🔗 Learn About Snowball Method</a>
+      </div>
+
+      <div class="method-card">
+        <div class="method-title">🌊 Avalanche Method <span class="method-badge avalanche-badge">Math-optimal</span></div>
+        <p style="font-size:14px; color:var(--text-mid); line-height:1.6; margin-bottom:12px;">Pay off the <strong>highest interest rate debt first</strong>, minimizing total interest paid. More mathematically efficient but requires more patience.</p>
+        <div class="pro-con-grid">
+          <div class="pro-list"><div class="pro-con-label">Pros</div><div class="pro-con-item">Saves more money overall</div><div class="pro-con-item">Mathematically optimal</div></div>
+          <div class="con-list"><div class="pro-con-label">Cons</div><div class="pro-con-item">Takes longer to see progress</div><div class="pro-con-item">Harder to stay motivated</div></div>
+        </div>
+        <a href="https://www.investopedia.com/terms/d/debt-avalanche.asp" class="link-pill" style="margin-top:12px; display:inline-flex;" target="_blank">🔗 Learn About Avalanche Method</a>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🏠 Renting Basics</div>
+      <a href="https://www.apartments.com/blog/renters-guide-how-to-find-and-rent-an-apartment" class="link-pill" target="_blank">🔗 Basics of Renting a Home</a>
+      <a href="https://www.apartmentlist.com/renter-life/renting-with-roommates" class="link-pill" target="_blank">🔗 Renting with a Roommate</a>
+      <a href="https://www.thebalancemoney.com/things-to-check-before-signing-a-lease-1798289" class="link-pill" target="_blank">🔗 Before Signing a Lease</a>
+      <a href="https://www.ncdoi.gov/consumers/landlord-tenant-rights-responsibilities" class="link-pill" target="_blank">🔗 NC Landlord-Tenant Rights</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">💡 Utility Costs Basics</div>
+      <a href="https://www.thebalancemoney.com/typical-utilities-in-an-apartment-1293505" class="link-pill" target="_blank">🔗 Basic Utility Costs When Renting</a>
+    </div>
+  </div>
+</section>
+
+<!-- BIG PURCHASES -->
+<section class="section" id="bigpurchases">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">08</div>
+      <div class="section-title-group">
+        <div class="section-label">Section Eight</div>
+        <div class="section-title">Making Big Purchases</div>
+        <div class="section-desc">Weighing pros and cons of major financial decisions like buying a car or a home.</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🚗 Buying a Car</div>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Buying a Car</h3>
+          <div class="pro-con-grid" style="margin-top:8px;">
+            <div class="pro-list" style="font-size:12px;"><div class="pro-con-label">Pros</div><div class="pro-con-item">Build equity</div><div class="pro-con-item">No mileage limits</div></div>
+            <div class="con-list" style="font-size:12px;"><div class="pro-con-label">Cons</div><div class="pro-con-item">Depreciates fast</div><div class="pro-con-item">Higher monthly payments</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Leasing a Car</h3>
+          <div class="pro-con-grid" style="margin-top:8px;">
+            <div class="pro-list" style="font-size:12px;"><div class="pro-con-label">Pros</div><div class="pro-con-item">Lower payments</div><div class="pro-con-item">New car every few years</div></div>
+            <div class="con-list" style="font-size:12px;"><div class="pro-con-label">Cons</div><div class="pro-con-item">No ownership</div><div class="pro-con-item">Mileage restrictions</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Used Car</h3>
+          <div class="pro-con-grid" style="margin-top:8px;">
+            <div class="pro-list" style="font-size:12px;"><div class="pro-con-label">Pros</div><div class="pro-con-item">Lower price</div><div class="pro-con-item">Less depreciation</div></div>
+            <div class="con-list" style="font-size:12px;"><div class="pro-con-label">Cons</div><div class="pro-con-item">Higher maintenance</div><div class="pro-con-item">No warranty</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>New Car</h3>
+          <div class="pro-con-grid" style="margin-top:8px;">
+            <div class="pro-list" style="font-size:12px;"><div class="pro-con-label">Pros</div><div class="pro-con-item">Full warranty</div><div class="pro-con-item">Latest features</div></div>
+            <div class="con-list" style="font-size:12px;"><div class="pro-con-label">Cons</div><div class="pro-con-item">Rapid depreciation</div><div class="pro-con-item">Highest price</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:12px;">
+        <a href="https://www.consumerreports.org/cars/how-to-negotiate-car-price/" class="link-pill" target="_blank">🔗 Negotiating with Car Dealers</a>
+        <a href="https://www.bankrate.com/loans/auto-loans/how-to-finance-a-car/" class="link-pill" target="_blank">🔗 How to Finance a Car</a>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🏠 Buying a House</div>
+      <a href="https://www.consumerfinance.gov/owning-a-home/" class="link-pill" target="_blank">🔗 Understanding Mortgages</a>
+      <a href="https://www.nerdwallet.com/article/mortgages/renting-vs-buying-a-home" class="link-pill" target="_blank">🔗 Buying vs. Renting a Home</a>
+      <div class="card-grid" style="margin-top:12px;">
+        <div class="card">
+          <h3>Buying a Home</h3>
+          <div class="pro-con-grid" style="margin-top:8px;">
+            <div class="pro-list" style="font-size:12px;"><div class="pro-con-label">Pros</div><div class="pro-con-item">Build equity</div><div class="pro-con-item">Stability &amp; freedom</div></div>
+            <div class="con-list" style="font-size:12px;"><div class="pro-con-label">Cons</div><div class="pro-con-item">Large upfront costs</div><div class="pro-con-item">Maintenance costs</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Renting a Home</h3>
+          <div class="pro-con-grid" style="margin-top:8px;">
+            <div class="pro-list" style="font-size:12px;"><div class="pro-con-label">Pros</div><div class="pro-con-item">Flexibility</div><div class="pro-con-item">No repair costs</div></div>
+            <div class="con-list" style="font-size:12px;"><div class="pro-con-label">Cons</div><div class="pro-con-item">No equity built</div><div class="pro-con-item">Rent can increase</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSURANCE -->
+<section class="section" id="insurance">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">09</div>
+      <div class="section-title-group">
+        <div class="section-label">Section Nine</div>
+        <div class="section-title">Insurance</div>
+        <div class="section-desc">Understanding health, car, and renter's insurance to protect against unexpected financial losses.</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">❤️ Health Insurance</div>
+      <a href="https://www.healthcare.gov/young-adults/children-under-26/" class="link-pill" target="_blank">🔗 Health Insurance Basics for Teens</a>
+      <a href="https://www.youtube.com/watch?v=Ei8g0EQ2eEU" class="link-pill" target="_blank">▶ How Health Insurance Works</a>
+      <a href="https://www.investopedia.com/terms/h/healthinsurance.asp" class="link-pill" target="_blank">🔗 Why You Need Health Insurance</a>
+      <a href="https://www.healthcare.gov/glossary/" class="link-pill" target="_blank">🔗 Health Insurance Glossary</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🚗 Car Insurance</div>
+      <a href="https://www.geico.com" class="link-pill" target="_blank">GEICO Insurance</a>
+      <a href="https://www.progressive.com/auto/" class="link-pill" target="_blank">Progressive Auto</a>
+      <a href="https://www.nerdwallet.com/article/insurance/how-does-car-insurance-work" class="link-pill" target="_blank">🔗 How Car Insurance Works</a>
+      <a href="https://www.thebalancemoney.com/car-insurance-basics-2645596" class="link-pill" target="_blank">🔗 Car Insurance Basics</a>
+      <a href="https://www.iii.org/article/what-to-do-after-a-car-accident" class="link-pill" target="_blank">📋 What to Do After a Car Crash</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🏠 Renter's Insurance</div>
+      <a href="https://www.lemonade.com/renters" class="link-pill" target="_blank">Lemonade Renters Insurance</a>
+      <a href="https://www.thebalancemoney.com/why-do-you-need-renters-insurance-527745" class="link-pill" target="_blank">🔗 Why You Need Renter's Insurance</a>
+      <a href="https://www.policygenius.com/renters-insurance/how-much-does-renters-insurance-cost/" class="link-pill" target="_blank">🔗 Estimate Renter's Insurance Costs</a>
+      <a href="https://www.nerdwallet.com/article/insurance/home-inventory" class="link-pill" target="_blank">🔗 How to Make a Home Inventory List</a>
+      <a href="https://www.youtube.com/watch?v=xXXjdL1l9Ts" class="link-pill" target="_blank">▶ Home Inventory Video</a>
+      <a href="https://www.insuranceinformationinstitute.org/tag/home-inventory" class="link-pill" target="_blank">🔗 Home Inventory for Insurance</a>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTING -->
+<section class="section" id="investing">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div class="section-title-group">
+        <div class="section-label">Section Ten</div>
+        <div class="section-title">Investing</div>
+        <div class="section-desc">Building wealth through compound interest, retirement accounts, and long-term investment strategies.</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📖 Retirement Terms Glossary</div>
+      <a href="https://www.investopedia.com/retirement-terms-5091498" class="link-pill" target="_blank">🔗 Retirement Vocabulary &amp; Terms</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📈 Compound Interest &amp; The Rule of 72</div>
+      <div class="info-box">The <strong>Rule of 72</strong> lets you estimate how long it takes to double your investment: divide 72 by the annual interest rate. At 8%, your money doubles in ~9 years.</div>
+      <a href="https://www.investopedia.com/terms/c/compoundinterest.asp" class="link-pill" target="_blank">🔗 Compound Interest Explained</a>
+      <a href="https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator" class="link-pill" target="_blank">🧮 Compound Interest Calculator</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🌐 Websites About Investing</div>
+      <a href="https://www.investopedia.com" class="link-pill" target="_blank">Investopedia</a>
+      <a href="https://www.fool.com" class="link-pill" target="_blank">The Motley Fool</a>
+      <a href="https://www.teenvestor.com" class="link-pill" target="_blank">Teenvestor (Teens)</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📚 Books About Investing</div>
+      <div class="book-grid">
+        <div class="book-card"><div class="book-cover" style="background:#E1F5EE;">💰</div><div class="book-title">Rich Dad Poor Dad</div><div class="book-author">Robert Kiyosaki</div><a href="https://www.amazon.com/Rich-Dad-Poor-Teach-Middle/dp/1612680194" class="link-pill" style="font-size:11px; margin-top:8px;" target="_blank">Find it</a></div>
+        <div class="book-card"><div class="book-cover" style="background:#FAEEDA;">📊</div><div class="book-title">The Little Book of Common Sense Investing</div><div class="book-author">John Bogle</div><a href="https://www.amazon.com/Little-Book-Common-Sense-Investing/dp/1119404509" class="link-pill" style="font-size:11px; margin-top:8px;" target="_blank">Find it</a></div>
+        <div class="book-card"><div class="book-cover" style="background:#EEEDFE;">🧠</div><div class="book-title">The Psychology of Money</div><div class="book-author">Morgan Housel</div><a href="https://www.amazon.com/Psychology-Money-Timeless-lessons-happiness/dp/0857197681" class="link-pill" style="font-size:11px; margin-top:8px;" target="_blank">Find it</a></div>
+        <div class="book-card"><div class="book-cover" style="background:#E6F1FB;">📈</div><div class="book-title">I Will Teach You To Be Rich</div><div class="book-author">Ramit Sethi</div><a href="https://www.amazon.com/Will-Teach-You-Rich-Second/dp/1523505745" class="link-pill" style="font-size:11px; margin-top:8px;" target="_blank">Find it</a></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">📉 Stock Market Basics</div>
+      <a href="https://www.youtube.com/watch?v=p7HKvqRI_Bo" class="link-pill" target="_blank">▶ Investing in the Stock Market (Video)</a>
+      <a href="https://finance.yahoo.com" class="link-pill" target="_blank">📊 Yahoo Finance Stock Ticker</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Economics &amp; Personal Finance Portfolio · Google Sites Project</p>
+  <p style="margin-top:6px;">Created with <span>♥</span> · All sections completed per assignment requirements</p>
+</footer>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-pill').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
