@@ -29,21 +29,10 @@
     overflow-x: hidden;
   }
 
-html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-main {
-    width: 100%;
-}
-
   /* HERO */
   .hero {
     background: var(--green-dark);
     color: white;
-    width: 100%;
     padding: 80px 40px 60px;
     text-align: center;
     position: relative;
@@ -103,7 +92,7 @@ main {
     top: 0;
     z-index: 100;
     padding: 0 20px;
-   overflow-x: scroll;
+    overflow-x: auto;
     white-space: nowrap;
     scrollbar-width: none;
   }
@@ -818,9 +807,6 @@ main {
     .hero { padding: 50px 20px 40px; }
     .container { padding: 0 16px; }
   }
-* {
-    max-width: 100%;
-}
 </style>
 </head>
 <body>
@@ -844,6 +830,8 @@ main {
     <button class="nav-pill" onclick="showSection('bigpurchases')"><span class="nav-num">08</span> Big Purchases</button>
     <button class="nav-pill" onclick="showSection('insurance')"><span class="nav-num">09</span> Insurance</button>
     <button class="nav-pill" onclick="showSection('investing')"><span class="nav-num">10</span> Investing</button>
+    <button class="nav-pill" onclick="showSection('consumer')"><span class="nav-num">11</span> Consumer Protections</button>
+    <button class="nav-pill" onclick="showSection('consumerism')"><span class="nav-num">12</span> Critical Consumerism</button>
   </div>
 </nav>
 
@@ -854,7 +842,7 @@ main {
   <div class="container">
 
     <div class="about-hero">
-      <div class="about-initials">JA</div>
+      <img src="data:image/jpeg;base64,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" alt="Jorge Amaro" style="width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid rgba(93,202,165,0.5);margin:0 auto 20px;display:block;position:relative;z-index:1;">
       <div class="about-hero-name">Jorge Amaro Moran</div>
       <div class="about-hero-sub">Designer · Problem Solver · Venezuelan in NC</div>
       <div class="about-tags">
@@ -1491,6 +1479,94 @@ main {
       <div class="subsection-title">📉 Stock Market Basics</div>
       <a href="https://www.youtube.com/watch?v=p7HKvqRI_Bo" class="link-pill" target="_blank">▶ Investing in the Stock Market (Video)</a>
       <a href="https://finance.yahoo.com" class="link-pill" target="_blank">📊 Yahoo Finance Stock Ticker</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONSUMER PROTECTIONS -->
+<section class="section" id="consumer">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <div class="section-title-group">
+        <div class="section-label">Section Eleven</div>
+        <div class="section-title">Consumer Protections</div>
+        <div class="section-desc">Understanding your rights as a consumer and how to protect yourself from fraud and identity theft.</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🛡️ Consumer Protection Websites</div>
+      <a href="https://www.consumer.ftc.gov" class="link-pill" target="_blank">🔗 FTC Consumer Information</a>
+      <a href="https://www.consumerfinance.gov" class="link-pill" target="_blank">🔗 Consumer Financial Protection Bureau</a>
+      <div style="margin-top: 14px;">
+        <a href="https://www.bbb.org/" target="_blank" class="resume-download-btn" style="display:inline-flex;">
+          🏢 Better Business Bureau (BBB)
+        </a>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🎥 Identity Theft — What To Do If You're a Victim</div>
+      <a href="https://www.youtube.com/watch?v=0mvCeNsTa1g" class="link-pill" target="_blank">▶ What to Do If You're a Victim of Identity Theft</a>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🔒 How to Protect Yourself from Identity Theft</div>
+      <a href="https://www.identitytheft.gov/Steps" class="link-pill" target="_blank">🔗 IdentityTheft.gov — Protection Steps</a>
+      <a href="https://www.consumer.ftc.gov/articles/what-know-about-identity-theft" class="link-pill" target="_blank">🔗 FTC — What to Know About Identity Theft</a>
+    </div>
+  </div>
+</section>
+
+<!-- CRITICAL CONSUMERISM -->
+<section class="section" id="consumerism">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">12</div>
+      <div class="section-title-group">
+        <div class="section-label">Section Twelve</div>
+        <div class="section-title">Critical Consumerism</div>
+        <div class="section-desc">Recognizing deceptive design patterns and manipulation tactics used to influence consumer spending.</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🎭 Dark Patterns & Deceptive Design</div>
+      <div class="info-box">
+        <strong>Dark patterns</strong> are deceptive UI/UX design tricks used by websites and apps to manipulate users into spending more money, signing up for things they didn't want, or sharing more data than they intended.
+      </div>
+      <div style="margin-top: 14px;">
+        <a href="https://www.deceptive.design/" target="_blank" class="resume-download-btn" style="display:inline-flex;">
+          🎭 Deceptive Design Website
+        </a>
+      </div>
+      <div style="margin-top: 14px;">
+        <a href="https://www.youtube.com/watch?v=kxkrdLI6e6M" class="link-pill" target="_blank">▶ How Dark Patterns Trick You Into Spending Money</a>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top: 8px;">
+      <div class="card card-accent">
+        <div class="card-icon">🪤</div>
+        <h3>Trick Questions</h3>
+        <p>Confusing wording designed to make you accidentally agree to something you didn't want, like unwanted subscriptions.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="card-icon">⏱️</div>
+        <h3>False Urgency</h3>
+        <p>Fake countdown timers or "Only 2 left!" warnings that pressure you into buying before you've thought it through.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="card-icon">🪝</div>
+        <h3>Roach Motel</h3>
+        <p>Easy to sign up, nearly impossible to cancel — a common tactic used by subscription services.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="card-icon">👁️</div>
+        <h3>Misdirection</h3>
+        <p>Visually emphasizing one option to distract you from the better or cheaper alternative hidden on the page.</p>
+      </div>
     </div>
   </div>
 </section>
